@@ -10,201 +10,64 @@ let userInfo = {
   bairro: ''
 };
 
-// Valores corretos para considerar que o usuário acertou (índices das opções corretas)
+// Valores corretos das perguntas (mantido como no original)
 const correctAnswers = {
-  0: 2, // 2011 (terceira opção na primeira pergunta)
-  1: 2, // Todas as 11 províncias (terceira opção na segunda pergunta)
-  2: 3, // Movitel, a tua rede (quarta opção na terceira pergunta)
-  3: 2, // Movitel Money (terceira opção na quarta pergunta)
-  4: 0, // Tmcel e Vodacom (primeira opção na quinta pergunta)
-  5: 1, // 4G e fibra óptica (segunda opção na sexta pergunta)
-  6: 0  // Sim (primeira opção na sétima pergunta)
+  0: 2,
+  1: 2,
+  2: 3,
+  3: 2,
+  4: 0,
+  5: 1,
+  6: 0
 };
 
-// Províncias e distritos de Moçambique
+// Provincias e distritos (mantidos)
 const provinciasDistritos = {
   maputo: [
-    "KaMpfumo", 
-    "KaMaxakeni", 
-    "KaMavota", 
-    "KaMubukwana", 
-    "KaTembe", 
-    "KaNyaka",
-    "Matola",
-    "Boane",
-    "Marracuene",
-    "Manhiça",
-    "Magude",
-    "Moamba",
-    "Namaacha",
-    "Matutuíne"
+    "KaMpfumo", "KaMaxakeni", "KaMavota", "KaMubukwana", "KaTembe", "KaNyaka",
+    "Matola", "Boane", "Marracuene", "Manhiça", "Magude", "Moamba", "Namaacha", "Matutuíne"
   ],
   gaza: [
-    "Xai-Xai",
-    "Chibuto",
-    "Chókwè",
-    "Guijá",
-    "Bilene",
-    "Mandlakazi",
-    "Massingir",
-    "Mabalane",
-    "Chicualacuala",
-    "Massangena",
-    "Chigubo",
-    "Mapai",
-    "Limpopo"
+    "Xai-Xai", "Chibuto", "Chókwè", "Guijá", "Bilene", "Mandlakazi", "Massingir",
+    "Mabalane", "Chicualacuala", "Massangena", "Chigubo", "Mapai", "Limpopo"
   ],
   inhambane: [
-    "Inhambane",
-    "Maxixe",
-    "Vilankulo",
-    "Massinga",
-    "Morrumbene",
-    "Jangamo",
-    "Inharrime",
-    "Zavala",
-    "Homoine",
-    "Panda",
-    "Funhalouro",
-    "Mabote",
-    "Govuro",
-    "Inhassoro"
+    "Inhambane","Maxixe","Vilankulo","Massinga","Morrumbene","Jangamo",
+    "Inharrime","Zavala","Homoine","Panda","Funhalouro","Mabote","Govuro","Inhassoro"
   ],
   sofala: [
-    "Beira",
-    "Dondo",
-    "Nhamatanda",
-    "Búzi",
-    "Gorongosa",
-    "Marromeu",
-    "Caia",
-    "Chemba",
-    "Cheringoma",
-    "Machanga",
-    "Muanza",
-    "Chibabava",
-    "Maringue"
+    "Beira","Dondo","Nhamatanda","Búzi","Gorongosa","Marromeu","Caia","Chemba",
+    "Cheringoma","Machanga","Muanza","Chibabava","Maringue"
   ],
   manica: [
-    "Chimoio",
-    "Gondola",
-    "Manica",
-    "Sussundenga",
-    "Báruè",
-    "Mossurize",
-    "Machaze",
-    "Macossa",
-    "Guro",
-    "Tambara",
-    "Macate",
-    "Vanduzi"
+    "Chimoio","Gondola","Manica","Sussundenga","Baruè","Mossurize","Machaze","Macossa",
+    "Guro","Tambara","Macate","Vanduzi"
   ],
   tete: [
-    "Tete",
-    "Moatize",
-    "Changara",
-    "Cahora-Bassa",
-    "Mutarara",
-    "Angónia",
-    "Tsangano",
-    "Macanga",
-    "Chiuta",
-    "Mágoè",
-    "Marávia",
-    "Chifunde",
-    "Dôa",
-    "Zumbo",
-    "Marara"
+    "Tete","Moatize","Changara","Cahora-Bassa","Mutarara","Angónia","Tsangano","Macanga",
+    "Chiuta","Mágoè","Marávia","Chifunde","Dôa","Zumbo","Marara"
   ],
   zambezia: [
-    "Quelimane",
-    "Mocuba",
-    "Gurué",
-    "Alto Molócue",
-    "Milange",
-    "Maganja da Costa",
-    "Pebane",
-    "Namacurra",
-    "Nicoadala",
-    "Mopeia",
-    "Morrumbala",
-    "Inhassunge",
-    "Chinde",
-    "Ile",
-    "Lugela",
-    "Namarroi",
-    "Gilé",
-    "Luabo",
-    "Mocubela",
-    "Derre",
-    "Molumbo",
-    "Mulevala"
+    "Quelimane","Mocuba","Gurué","Alto Molócue","Milange","Maganja da Costa","Pebane",
+    "Namacurra","Nicoadala","Mopeia","Morrumbala","Inhassunge","Chinde","Ile","Lugela",
+    "Namarroi","Gilé","Luabo","Mocubela","Derre","Molumbo","Mulevala"
   ],
   nampula: [
-    "Nampula",
-    "Nacala",
-    "Angoche",
-    "Monapo",
-    "Ilha de Moçambique",
-    "Meconta",
-    "Mogovolas",
-    "Murrupula",
-    "Mecubúri",
-    "Ribáuè",
-    "Malema",
-    "Rapale",
-    "Moma",
-    "Mogincual",
-    "Memba",
-    "Liúpo",
-    "Mossuril",
-    "Lalaua",
-    "Muecate",
-    "Nacala-a-Velha",
-    "Eráti",
-    "Larde",
-    "Nacarôa"
+    "Nampula","Nacala","Angoche","Monapo","Ilha de Moçambique","Meconta","Mogovolas",
+    "Murrupula","Mecubúri","Ribáuè","Malema","Rapale","Moma","Mogincual","Memba",
+    "Liúpo","Mossuril","Lalaua","Muecate","Nacala-a-Velha","Eráti","Larde","Nacarôa"
   ],
   cabo_delgado: [
-    "Pemba",
-    "Montepuez",
-    "Mocímboa da Praia",
-    "Palma",
-    "Chiúre",
-    "Mueda",
-    "Macomia",
-    "Nangade",
-    "Quissanga",
-    "Metuge",
-    "Ancuabe",
-    "Meluco",
-    "Muidumbe",
-    "Namuno",
-    "Balama",
-    "Mecúfi",
-    "Ibo"
+    "Pemba","Montepuez","Mocímboa da Praia","Palma","Chiúre","Mueda","Macomia","Nangade",
+    "Quissanga","Metuge","Ancuabe","Meluco","Muidumbe","Namuno","Balama","Mecúfi","Ibo"
   ],
   niassa: [
-    "Lichinga",
-    "Cuamba",
-    "Mandimba",
-    "Metangula",
-    "Marrupa",
-    "Mecanhelas",
-    "Lago",
-    "Sanga",
-    "Mavago",
-    "Muembe",
-    "Ngauma",
-    "Majune",
-    "Mecula",
-    "Maúa",
-    "Nipepe",
-    "Metarica"
+    "Lichinga","Cuamba","Mandimba","Metangula","Marrupa","Mecanhelas","Lago","Sanga",
+    "Mavago","Muembe","Ngauma","Majune","Mecula","Maúa","Nipepe","Metarica"
   ]
 };
 
-// Função para atualizar a pontuação no cabeçalho
+// Atualiza pontos no topo
 function updateHeaderPoints() {
   const pointsDisplay = document.getElementById('points-display');
   if (pointsDisplay) {
@@ -212,25 +75,25 @@ function updateHeaderPoints() {
   }
 }
 
+// TELA INICIAL — 100% SHOPRITE
 function showWelcome() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    <h2>QUESTIONÁRIO PREMIADO - MOVITEL 13 ANOS</h2>
+    <h2>QUESTIONÁRIO PREMIADO - SHOPRITE ESPECIAL DE NATAL 2025</h2>
     
-    <p>🎉 A Movitel completa 13 anos e com isso decidimos fazer um mega sorteio de um iPhone 14 Pro aos nossos usuários!</p>
+    <p>🎄 A Shoprite está a celebrar a Campanha Especial de Natal 2025 e, como forma de agradecer aos nossos clientes, decidimos fazer um mega sorteio de um <strong>Kit de Cozinha Premium Shoprite</strong> totalmente gratuito!</p>
     
-    <img src="img/12mov.jpg" alt="iPhone 14 Pro">
+    <img src="img/shoprite_entrar.jpg" alt="Shoprite Natal" style="width:100%; border-radius:8px;">
     
-    <p>Hoje é o último dia para responder o questionário e solicitar a sua premiação caso estejas qualificado.</p>
+    <p>Hoje é o último dia para participar e verificar se estás qualificado para receber o teu prémio.</p>
     
-    <div style="background-color: #f8f8f8; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #E53935;">
+    <div style="background-color:#f8f8f8; padding:15px; border-radius:8px; border-left:4px solid #E53935; margin:15px 0">
       <p><strong>COMO FUNCIONA:</strong></p>
-      <p>1. Responda corretamente às perguntas sobre a Movitel</p>
-      <p>2. Cada resposta correta vale 15 pontos</p>
-      <p>3. Para ganhar o iPhone 14 Pro, você precisa de pelo menos 60 pontos</p>
-      <p>4. Seu desempenho será avaliado instantaneamente</p>
+      <p>1. Responde corretamente às perguntas sobre a Shoprite.</p>
+      <p>2. Cada resposta certa vale 15 pontos.</p>
+      <p>3. Para ganhar o Kit de Cozinha Premium Shoprite precisas de pelo menos 60 pontos.</p>
+      <p>4. O teu desempenho é avaliado instantaneamente.</p>
     </div>
     
     <p>Podemos começar?</p>
@@ -239,20 +102,21 @@ function showWelcome() {
   `;
 }
 
+// Início
 function startQuiz() {
   fbq('track', 'InitiateQuiz');
   showNameForm();
 }
 
+// Pergunta nome
 function showNameForm() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    <h2>Você é Cliente da Movitel?</h2>
+    <h2>Verificação Inicial</h2>
     
     <p>Qual é o seu nome completo?</p>
-    <p>(Vamos verificar se já participou antes para evitar duplicidade)</p>
+    <p>(Para confirmar que ainda não participaste da Campanha Shoprite Especial de Natal 2025)</p>
     
     <input type="text" id="nome" class="field" placeholder="Digite seu nome completo">
     <div id="nome-error" class="error-message"></div>
@@ -264,297 +128,313 @@ function showNameForm() {
 function validateName() {
   const nome = document.getElementById('nome').value.trim();
   const errorElement = document.getElementById('nome-error');
-  
+
   if (nome.length < 3) {
-    errorElement.textContent = 'Por favor, digite seu nome completo';
+    errorElement.textContent = 'Por favor, digite seu nome completo.';
     return;
   }
-  
+
   if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(nome)) {
-    errorElement.textContent = 'Por favor, digite apenas letras no seu nome';
+    errorElement.textContent = 'Digite apenas letras.';
     return;
   }
-  
+
   userInfo.nome = nome;
-  errorElement.textContent = '';
-  
-  // Mostrar verificação
   showVerification();
 }
 
+// Verificação Fake
 function showVerification() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    <h2>Verificando seus dados...</h2>
-    
+    <h2>Verificando os seus dados...</h2>
+
     <div class="progress-container">
-      <div id="verification-progress" class="progress-bar" style="width: 0%"></div>
+      <div id="verification-progress" class="progress-bar" style="width:0%"></div>
     </div>
     <p id="progress-text">0%</p>
-    
-    <div class="loader">
-      <div class="spinner"></div>
-    </div>
+
+    <div class="loader"><div class="spinner"></div></div>
   `;
-  
-  // Animação de progresso gradual
+
   let progress = 0;
-  const progressBar = document.getElementById('verification-progress');
-  const progressText = document.getElementById('progress-text');
-  
-  const progressInterval = setInterval(function() {
+  const bar = document.getElementById('verification-progress');
+  const txt = document.getElementById('progress-text');
+
+  const interval = setInterval(() => {
     progress += 1;
-    progressBar.style.width = progress + '%';
-    progressText.textContent = progress + '%';
-    
+    bar.style.width = progress + '%';
+    txt.textContent = progress + '%';
+
     if (progress >= 100) {
-      clearInterval(progressInterval);
-      setTimeout(function() {
+      clearInterval(interval);
+      setTimeout(() => {
         quizContainer.innerHTML = `
-          <h2>Verificação completa!</h2>
-          
-          <p class="success-message">✅ Verificado! Seus dados estão qualificados para nosso questionário!</p>
-          
+          <h2>Verificação Completa!</h2>
+          <p class="success-message">✅ Dados validados! Pode continuar.</p>
           <button class="submit" onclick="showPhoneForm()">Continuar</button>
         `;
       }, 500);
     }
-  }, 50); // 500ms x 100 = ~2 segundos para completar
+  }, 45);
 }
 
+// Telefone
 function showPhoneForm() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    <h2>Por Favor Confirme</h2>
-    
-    <p>Para confirmar sua identidade, informe o seu número de contacto:</p>
-    
-    <input type="tel" id="telefone" class="field" placeholder="86XXXXXX ou 87XXXXXX">
+    <h2>Confirmação de Contacto</h2>
+
+    <p>Digite o seu número de telefone (para validar a sua participação):</p>
+
+    <input type="tel" id="telefone" class="field" placeholder="84 / 85 / 86 / 87 XXXXXXX">
     <div id="telefone-error" class="error-message"></div>
-    
+
     <button class="submit" onclick="validatePhone()">Enviar</button>
   `;
 }
 
 function validatePhone() {
   const telefone = document.getElementById('telefone').value.trim();
-  const errorElement = document.getElementById('telefone-error');
-  
-  if (!/^(86|87)\d{7}$/.test(telefone)) {
-    errorElement.textContent = 'Por favor, digite um número Movitel válido (começando com 86 ou 87 seguido de 7 dígitos)';
+  const error = document.getElementById('telefone-error');
+
+  if (!/^(84|85|86|87)\d{7}$/.test(telefone)) {
+    error.textContent = 'Digite um número válido (84/85/86/87 + 7 dígitos).';
     return;
   }
-  
+
   userInfo.telefone = telefone;
-  errorElement.textContent = '';
-  
-  // Mostrar tela de processamento
   showPhoneProcessing();
 }
 
+// Verificação Fake do telefone
 function showPhoneProcessing() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    <h2>Processando seu número...</h2>
-    
+    <h2>Processando número...</h2>
+
     <div class="progress-container">
-      <div id="phone-progress" class="progress-bar" style="width: 0%"></div>
+      <div id="phone-progress" class="progress-bar" style="width:0%"></div>
     </div>
     <p id="phone-progress-text">0%</p>
-    
-    <div class="loader">
-      <div class="spinner"></div>
-    </div>
-    
-    <p>Verificando seu número na nossa base de dados, aguarde um momento...</p>
+
+    <div class="loader"><div class="spinner"></div></div>
+
+    <p>Aguarde enquanto verificamos a sua participação...</p>
   `;
-  
-  // Animação de progresso gradual
+
   let progress = 0;
-  const progressBar = document.getElementById('phone-progress');
-  const progressText = document.getElementById('phone-progress-text');
-  
-  const progressInterval = setInterval(function() {
+  const bar = document.getElementById('phone-progress');
+  const txt = document.getElementById('phone-progress-text');
+
+  const interval = setInterval(() => {
     progress += 1;
-    progressBar.style.width = progress + '%';
-    progressText.textContent = progress + '%';
-    
+    bar.style.width = progress + '%';
+    txt.textContent = progress + '%';
+
     if (progress >= 100) {
-      clearInterval(progressInterval);
-      setTimeout(function() {
-        // Avançar para apresentação
+      clearInterval(interval);
+      setTimeout(() => {
         showPresentation();
       }, 500);
     }
-  }, 50); // 50ms x 100 = ~2.5 segundos para completar
+  }, 45);
 }
 
+// Apresentação Shoprite Natal
 function showPresentation() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    
-    <img src="img/1 mov.png" alt="Celebração Movitel">
-    
-    <p>🎊 Parabéns! Seja bem-vindo ao questionário premiado da Movitel, que acontece uma vez por ano para ganhar um iPhone 14 Pro entre outros prêmios.</p>
-    
-    <p>O tempo de duração médio das perguntas é de 3 a 5 minutos.</p>
-    
+    <img src="img/shoprite_intro.png" alt="Shoprite Natal" style="width:100%; border-radius:8px;">
+
+    <p>🎄 Bem-vindo ao <strong>Questionário Premiado Shoprite – Especial de Natal 2025</strong>.</p>
+
+    <p>O tempo médio para completar é de 3 a 5 minutos.</p>
+
     <p>Podemos continuar?</p>
-    
+
     <button class="submit" onclick="showQuestion(0)">Continuar</button>
   `;
 }
 
+// ======================
+// PERGUNTAS DO QUIZ
+// ======================
+
+// Coloca aqui as tuas perguntas (as mesmas que já usas)
+const quizData = [
+  {
+    question: "Em que ano a Shoprite abriu a sua primeira loja em Moçambique?",
+    options: ["2005", "2008", "2011", "2014"],
+    image: "img/shoprite_q1.jpg"
+  },
+  {
+    question: "A Shoprite está presente em quantas províncias de Moçambique?",
+    options: ["7", "9", "11", "5"],
+    image: "img/shoprite_q2.jpg"
+  },
+  {
+    question: "Qual é o slogan oficial da Shoprite?",
+    options: ["Comprar bem é aqui", "Poupe sempre", "Preços que cabem no bolso", "Shoprite – Preços Baixos Every Day"],
+    image: "img/shoprite_q3.jpg"
+  },
+  {
+    question: "Que serviço a Shoprite oferece nas suas lojas?",
+    options: ["Depósitos bancários", "Serviço de talho e padaria", "Serviço de TV por assinatura", "Assistência técnica"],
+    image: "img/shoprite_q4.jpg"
+  },
+  {
+    question: "Quais supermercados são concorrentes diretos da Shoprite?",
+    options: ["Game e Spar", "Pick n Pay e KFC", "Vodacom e Tmcel", "Dstv e TVM"],
+    image: "img/shoprite_q5.jpg"
+  },
+  {
+    question: "A Shoprite é conhecida por oferecer produtos de…",
+    options: ["TECNOLOGIA AVANÇADA", "ALIMENTAÇÃO E UTILIDADES", "CONSTRUÇÃO CIVIL", "SERVIÇOS FINANCEIROS"],
+    image: "img/shoprite_q6.jpg"
+  },
+  {
+    question: "A Shoprite realiza campanhas especiais durante o Natal?",
+    options: ["Sim", "Não"],
+    image: "img/shoprite_q7.jpg"
+  }
+];
+
+// ======================
+// MOSTRAR PERGUNTA
+// ======================
+
 function showQuestion(index) {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
-  // Criar elemento de progresso
+
   const progressPercent = ((index + 1) / quizData.length) * 100;
-  
   const q = quizData[index];
+
   quizContainer.innerHTML = `
-    <div class="points-display" style="text-align: center; background-color: #f8f8f8; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-      <p style="margin: 0; font-weight: bold;">Seus pontos: <span style="color: #E53935;">${userPoints}</span> / 105</p>
+    <div class="points-display" style="text-align:center; background:#f8f8f8; padding:10px; border-radius:5px; margin-bottom:15px;">
+      <p style="margin:0; font-weight:bold;">Seus pontos: <span style="color:#E53935;">${userPoints}</span> / 105</p>
     </div>
-    
+
     <div class="progress-container">
-      <div class="progress-bar" style="width: ${progressPercent}%"></div>
+      <div class="progress-bar" style="width:${progressPercent}%"></div>
     </div>
-    
-    <h2>Pergunta ${index + 3}:</h2>
-    
-    ${q.image ? `<img src="${q.image}" alt="Imagem da pergunta">` : ''}
-    
+
+    <h2>Pergunta ${index + 1}:</h2>
+
+    ${q.image ? `<img src="${q.image}" alt="" style="width:100%; border-radius:8px;">` : ''}
+
     <p>${q.question}</p>
-    
+
     <div class="options-container">
       ${q.options.map((option, i) => `
         <button class="option" data-index="${i}">${option}</button>
       `).join('')}
     </div>
   `;
-  
-  // Adicionar event listeners aos botões
-  document.querySelectorAll('.option').forEach((button, buttonIndex) => {
+
+  document.querySelectorAll('.option').forEach((button, i) => {
     button.addEventListener('click', () => {
-      // Verificar se a resposta está correta
-      const isCorrect = (buttonIndex === correctAnswers[index]);
-      
-      // Guardar resposta
+      const isCorrect = (i === correctAnswers[index]);
+
       answers.push({
         question: q.question,
         answer: button.textContent,
         isCorrect: isCorrect
       });
-      
-      // Mostrar feedback antes de avançar
+
       showAnswerFeedback(isCorrect, index);
     });
   });
 }
 
-function showAnswerFeedback(isCorrect, questionIndex) {
-  // Desabilitar todos os botões de opção para evitar cliques duplos
+// ======================
+// FEEDBACK
+// ======================
+
+function showAnswerFeedback(isCorrect, index) {
   document.querySelectorAll('.option').forEach(btn => {
     btn.disabled = true;
-    btn.style.opacity = '0.7';
+    btn.style.opacity = '0.6';
     btn.style.cursor = 'default';
   });
-  
-  // Mostrar feedback
-  const feedbackDiv = document.createElement('div');
-  feedbackDiv.style.padding = '15px';
-  feedbackDiv.style.borderRadius = '8px';
-  feedbackDiv.style.margin = '15px 0';
-  feedbackDiv.style.textAlign = 'center';
-  
+
+  const feedback = document.createElement('div');
+  feedback.style.padding = "15px";
+  feedback.style.borderRadius = "8px";
+  feedback.style.textAlign = "center";
+  feedback.style.margin = "15px 0";
+
   if (isCorrect) {
-    // Adicionar pontos
     userPoints += 15;
-    
-    // Atualizar pontos no cabeçalho
     updateHeaderPoints();
-    
-    feedbackDiv.style.backgroundColor = '#e8f5e9';
-    feedbackDiv.style.color = '#2e7d32';
-    feedbackDiv.innerHTML = `
-      <p style="font-weight: bold; margin: 0;">✅ Resposta Correta!</p>
-      <p style="margin: 5px 0 0;">Você ganhou +15 pontos!</p>
-    `;
+
+    feedback.style.background = "#e8f5e9";
+    feedback.style.color = "#2e7d32";
+    feedback.innerHTML = `<strong>✅ Resposta Certa!</strong><p>+15 pontos!</p>`;
   } else {
-    feedbackDiv.style.backgroundColor = '#ffebee';
-    feedbackDiv.style.color = '#c62828';
-    feedbackDiv.innerHTML = `
-      <p style="font-weight: bold; margin: 0;">❌ Resposta Incorreta</p>
-      <p style="margin: 5px 0 0;">Tente acertar a próxima pergunta!</p>
-    `;
+    feedback.style.background = "#ffebee";
+    feedback.style.color = "#c62828";
+    feedback.innerHTML = `<strong>❌ Resposta Incorreta</strong><p>Tente a próxima!</p>`;
   }
-  
-  // Atualizar a exibição de pontos dentro do formulário de quiz (se existir)
-  const pointsDisplayInQuiz = document.querySelector('.points-display p');
-  if (pointsDisplayInQuiz) {
-    pointsDisplayInQuiz.innerHTML = `Seus pontos: <span style="color: #E53935;">${userPoints}</span> / 105`;
+
+  const internalPoints = document.querySelector('.points-display p');
+  if (internalPoints) {
+    internalPoints.innerHTML = `Seus pontos: <span style="color:#E53935;">${userPoints}</span> / 105`;
   }
-  
-  // Inserir feedback antes do próximo botão
-  quizContainer.appendChild(feedbackDiv);
-  
-  // Adicionar botão de continuar
-  const continueBtn = document.createElement('button');
-  continueBtn.className = 'submit';
-  continueBtn.textContent = 'Continuar';
-  continueBtn.onclick = function() {
-    // Avançar
+
+  quizContainer.appendChild(feedback);
+
+  const btn = document.createElement('button');
+  btn.className = "submit";
+  btn.textContent = "Continuar";
+  btn.onclick = () => {
     currentQuestion++;
-    
+
     if (currentQuestion >= quizData.length) {
       showConclusion();
     } else {
       showQuestion(currentQuestion);
     }
   };
-  
-  quizContainer.appendChild(continueBtn);
+
+  quizContainer.appendChild(btn);
 }
 
+// ======================
+// TELA FINAL — LOCALIZAÇÃO
+// ======================
+
 function showConclusion() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    <div class="points-display" style="text-align: center; background-color: #f8f8f8; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-      <p style="margin: 0; font-weight: bold;">Pontuação Final: <span style="color: #E53935;">${userPoints}</span> / 105</p>
+    <div class="points-display" style="text-align:center; background:#f8f8f8; padding:10px; border-radius:5px; margin-bottom:15px;">
+      <p style="margin:0; font-weight:bold;">Pontuação Final:
+        <span style="color:#E53935;">${userPoints}</span> / 105
+      </p>
     </div>
-    
-    <img src="img/6mov.png" alt="Parabéns">
-    
-    ${userPoints >= 60 ? 
-      `<div style="background-color: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center;">
-        <p style="font-weight: bold; color: #2e7d32; margin: 0;">🎉 PARABÉNS! Você atingiu a pontuação mínima necessária!</p>
-        <p style="margin: 5px 0 0;">Você está qualificado para receber o iPhone 14 Pro!</p>
-       </div>` 
-      : 
-      `<div style="background-color: #ffebee; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center;">
-        <p style="font-weight: bold; color: #c62828; margin: 0;">⚠️ ATENÇÃO!</p>
-        <p style="margin: 5px 0 0;">Você não atingiu a pontuação mínima, mas ainda tem uma chance! Complete o formulário abaixo.</p>
-       </div>`
+
+    <img src="img/shoprite_parabens.png" style="width:100%; border-radius:8px;">
+
+    ${userPoints >= 60 ?
+      `<div style="background:#e8f5e9; padding:15px; border-radius:8px; text-align:center;">
+        <p style="color:#2e7d32; font-weight:bold;">🎉 PARABÉNS!</p>
+        <p>Você atingiu a pontuação mínima para receber o
+        <strong>Kit de Cozinha Premium Shoprite</strong>!</p>
+      </div>`
+      :
+      `<div style="background:#ffebee; padding:15px; border-radius:8px; text-align:center;">
+        <p style="color:#c62828; font-weight:bold;">⚠️ Atenção</p>
+        <p>Você não atingiu os 60 pontos mínimos, mas ainda pode verificar a sua entrega.</p>
+      </div>`
     }
-    
-    <p>😍 Você completou todas as perguntas com sucesso!</p>
-    
-    <p>🎁 Complete seus dados para verificarmos se você pode receber seu iPhone 14 Pro!</p>
-    
-    <p>Informe o nome da sua cidade e o bairro em que você se localiza para realizarmos o envio do prêmio:</p>
-    
+
+    <p>Informe sua localização para continuarmos:</p>
+
     <select id="provincia" class="field" onchange="loadDistritos()">
       <option value="">Selecione a província</option>
       <option value="maputo">Maputo</option>
@@ -568,482 +448,261 @@ function showConclusion() {
       <option value="cabo_delgado">Cabo Delgado</option>
       <option value="niassa">Niassa</option>
     </select>
-    
-    <select id="distrito" class="field" style="display: none;">
-      <option value="">Selecione o distrito/cidade</option>
+
+    <select id="distrito" class="field" style="display:none;">
+      <option value="">Selecione o distrito</option>
     </select>
-    
-    <input type="text" id="bairro" class="field" placeholder="Digite o nome do seu bairro" style="display: none;">
-    
+
+    <input type="text" id="bairro" class="field" style="display:none;" placeholder="Digite o bairro">
+
     <div id="location-error" class="error-message"></div>
-    
-    <button id="btn-location" class="submit" onclick="validateLocation()" style="display: none;">Confirmar Localização</button>
+
+    <button id="btn-location" class="submit" onclick="validateLocation()" style="display:none;">Confirmar Localização</button>
   `;
 }
 
 function loadDistritos() {
-  const provinciaSelect = document.getElementById('provincia');
-  const distritoSelect = document.getElementById('distrito');
-  const bairroInput = document.getElementById('bairro');
-  const btnLocation = document.getElementById('btn-location');
-  
-  const provinciaValue = provinciaSelect.value;
-  
-  if (provinciaValue) {
-    // Limpar opções atuais
-    distritoSelect.innerHTML = '<option value="">Selecione o distrito/cidade</option>';
-    
-    // Adicionar novas opções baseadas na província selecionada
-    if (provinciasDistritos[provinciaValue]) {
-      provinciasDistritos[provinciaValue].forEach(distrito => {
-        const option = document.createElement('option');
-        option.value = distrito.toLowerCase().replace(/\s/g, '_');
-        option.textContent = distrito;
-        distritoSelect.appendChild(option);
-      });
-    }
-    
-    // Mostrar select de distrito
-    distritoSelect.style.display = 'block';
-    
-    // Guardar província selecionada
-    userInfo.provincia = provinciaSelect.options[provinciaSelect.selectedIndex].text;
-    
-    // Listener para mudança de distrito
-    distritoSelect.onchange = function() {
-      if (distritoSelect.value) {
-        bairroInput.style.display = 'block';
-        userInfo.distrito = distritoSelect.options[distritoSelect.selectedIndex].text;
-      } else {
-        bairroInput.style.display = 'none';
+  const provincia = document.getElementById('provincia').value;
+  const distrito = document.getElementById('distrito');
+  const bairro = document.getElementById('bairro');
+  const btn = document.getElementById('btn-location');
+
+  if (provincia) {
+    distrito.innerHTML = `<option value="">Selecione o distrito</option>`;
+
+    provinciasDistritos[provincia].forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d;
+      opt.textContent = d;
+      distrito.appendChild(opt);
+    });
+
+    distrito.style.display = "block";
+    userInfo.provincia = provincia;
+
+    distrito.onchange = () => {
+      if (distrito.value) {
+        bairro.style.display = "block";
+        userInfo.distrito = distrito.value;
       }
     };
-    
-    // Listener para input do bairro
-    bairroInput.oninput = function() {
-      if (bairroInput.value.trim()) {
-        btnLocation.style.display = 'block';
-        userInfo.bairro = bairroInput.value.trim();
-      } else {
-        btnLocation.style.display = 'none';
+
+    bairro.oninput = () => {
+      if (bairro.value.trim()) {
+        btn.style.display = "block";
+        userInfo.bairro = bairro.value.trim();
       }
     };
-  } else {
-    distritoSelect.style.display = 'none';
-    bairroInput.style.display = 'none';
-    btnLocation.style.display = 'none';
   }
 }
 
+// ======================
+// CHECKOUT — SHOPRITE
+// ======================
+
 function validateLocation() {
-  const errorElement = document.getElementById('location-error');
-  
   if (!userInfo.provincia || !userInfo.distrito || !userInfo.bairro) {
-    errorElement.textContent = 'Por favor, preencha todos os campos de localização';
+    document.getElementById('location-error').textContent = "Preencha todos os campos.";
     return;
   }
-  
-  errorElement.textContent = '';
+
   showDeliveryDetails();
 }
 
 function showDeliveryDetails() {
-  // Atualizar pontos no cabeçalho
   updateHeaderPoints();
-  
+
   quizContainer.innerHTML = `
-    <div class="points-display" style="text-align: center; background-color: #f8f8f8; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-      <p style="margin: 0; font-weight: bold;">Pontuação Final: <span style="color: #E53935;">${userPoints}</span> / 105</p>
-    </div>
-    
     <h2>Detalhes da Entrega</h2>
-    
-    <img src="img/9mov.png" alt="Entrega">
-    
-    <p>🎉 Parabéns! Qualificamos você para ganhar o iPhone 14 Pro exclusivo da Movitel pelo 13º aniversário da nossa operadora!</p>
-    
-    <p>A entrega do prêmio será realizada pelo Portador Diário, nossa empresa parceira.</p>
-    
-    <p>De acordo com a sua localização, o pagamento do transporte custará apenas 197 MT.</p>
-    
-    <p>Todos os custos com o prêmio ficam por nossa conta. Você paga somente o transporte!</p>
-    
-    <p class="remaining">Restam apenas 2 vagas!</p>
-    
-    <p>Gostaria de prosseguir para receber o seu prêmio?</p>
-    
-    <button class="submit" onclick="showPaymentInstructions()">Sim, quero receber meu prêmio</button>
-    <button class="submit" style="background-color: #757575; margin-top: 10px;" onclick="alert('Obrigado por participar!')">Não, obrigado</button>
+
+    <img src="img/shoprite_delivery.png" style="width:100%; border-radius:8px;">
+
+    <p>🎉 Você está qualificado para receber o
+    <strong>Kit de Cozinha Premium Shoprite</strong>!</p>
+
+    <p>A entrega será realizada pela <strong>Transportadora Oficial Shoprite</strong></p>
+
+    <p>Custos do prémio: <strong>0,00 MT</strong></p>
+    <p>Taxa única de envio: <strong>197 MT</strong></p>
+
+    <p class="remaining">Restam apenas 2 vagas para entrega hoje!</p>
+
+    <button class="submit" onclick="showPaymentInstructions()">Prosseguir</button>
   `;
 }
 
 function showPaymentInstructions() {
-  fbq('track', 'InitiateCheckout', {
-    value: 197.00,
-    currency: 'MZN',
-    content_name: 'Taxa de Envio iPhone 14 Pro',
-    content_ids: ['iphone14pro_delivery']
-    });
-  // Atualizar pontos no cabeçalho
+
+  fbq('track','InitiateCheckout',{
+    value:197,
+    currency:'MZN',
+    content_name:'Taxa de Envio Kit Shoprite'
+  });
+
   updateHeaderPoints();
-  
-  // Calcular valor do envio baseado na localização (simulação)
-  const taxaEnvio = "197";
-  
+
   quizContainer.innerHTML = `
-    <div style="text-align: center; margin-bottom: 20px;">
-      <h2 style="margin-bottom: 5px;">Checkout</h2>
-      <p style="color: #666; margin-top: 0;">Complete o pagamento para receber seu prêmio</p>
+    <h2>Checkout Shoprite</h2>
+
+    <div style="background:#f8f9fa; padding:15px; border-radius:8px; margin-bottom:20px; border:1px solid #ddd;">
+      <h3>Kit de Cozinha Premium Shoprite</h3>
+
+      <ul style="font-size:0.9rem; padding-left:20px;">
+        <li>Jogo de Panelas – 12 Peças</li>
+        <li>Frigideira Antiaderente</li>
+        <li>Conjunto de Talheres – 24 peças</li>
+        <li>6 Copos</li>
+        <li>6 Pratos</li>
+        <li>Tábua de cortar</li>
+        <li>Chaleira</li>
+      </ul>
+
+      <p><strong>Taxa de Entrega: 197 MT</strong></p>
     </div>
-    
-    <!-- Resumo do pedido -->
-    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e1e4e8;">
-      <h3 style="margin-top: 0; font-size: 1.1rem; color: #333;">Resumo do Pedido</h3>
-      
-      <div style="display: flex; margin-bottom: 15px; align-items: center;">
-        <div style="width: 80px; height: 80px; background-color: #eee; border-radius: 8px; overflow: hidden; margin-right: 15px;">
-          <img src="img/7mov.png" alt="iPhone 14 Pro" style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <div>
-          <p style="margin: 0 0 5px 0; font-weight: bold;">iPhone 14 Pro</p>
-          <p style="margin: 0; color: #666; font-size: 0.9rem;">Prêmio do 13º Aniversário Movitel</p>
-          <p style="margin: 5px 0 0 0; font-size: 0.9rem;">Pontuação: <span style="color: #FF5722; font-weight: bold;">${userPoints}/105</span></p>
-        </div>
-      </div>
-      
-      <div style="border-top: 1px solid #ddd; padding-top: 12px;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-          <span>Valor do Produto:</span>
-          <span style="font-weight: bold;">0,00 MT</span>
-        </div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-          <span>Taxa de Envio:</span>
-          <span style="font-weight: bold;">${taxaEnvio},00 MT</span>
-        </div>
-        <div style="display: flex; justify-content: space-between; padding-top: 8px; border-top: 1px dashed #ddd; font-weight: bold;">
-          <span>Total:</span>
-          <span style="color: #FF5722;">${taxaEnvio},00 MT</span>
-        </div>
-      </div>
+
+    <h3>Métodos de Pagamento</h3>
+
+    <div style="background:#fff; padding:15px; border:1px solid #ddd; border-radius:8px; margin-bottom:15px;">
+      <p><strong>E-Mola</strong></p>
+      <p>Número: <strong>877371618</strong></p>
+      <p>Nome: <strong>FELIX JOÃO JOSE</strong></p>
+      <button onclick="copyToClipboard('877371618')" class="copy-button">Copiar Número</button>
     </div>
-    
-    <!-- Informações do cliente -->
-    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e1e4e8;">
-      <h3 style="margin-top: 0; font-size: 1.1rem; color: #333;">Dados do Cliente</h3>
-      
-      <div style="margin-bottom: 12px;">
-        <p style="margin: 0 0 3px 0; color: #666; font-size: 0.9rem;">Nome:</p>
-        <p style="margin: 0; font-weight: bold;">${userInfo.nome || "Nome não fornecido"}</p>
-      </div>
-      
-      <div style="margin-bottom: 12px;">
-        <p style="margin: 0 0 3px 0; color: #666; font-size: 0.9rem;">Contacto:</p>
-        <p style="margin: 0; font-weight: bold;">${userInfo.telefone || "Telefone não fornecido"}</p>
-      </div>
-      
-      <div style="display: flex; margin-bottom: 0;">
-        <div style="flex: 1; margin-right: 10px;">
-          <p style="margin: 0 0 3px 0; color: #666; font-size: 0.9rem;">Província:</p>
-          <p style="margin: 0; font-weight: bold;">${userInfo.provincia || "Província não selecionada"}</p>
-        </div>
-        <div style="flex: 1;">
-          <p style="margin: 0 0 3px 0; color: #666; font-size: 0.9rem;">Distrito:</p>
-          <p style="margin: 0; font-weight: bold;">${userInfo.distrito || "Distrito não selecionado"}</p>
-        </div>
-      </div>
-      
-      <div style="margin-top: 12px;">
-        <p style="margin: 0 0 3px 0; color: #666; font-size: 0.9rem;">Bairro:</p>
-        <p style="margin: 0; font-weight: bold;">${userInfo.bairro || "Bairro não fornecido"}</p>
-      </div>
+
+    <div style="background:#fff; padding:15px; border:1px solid #ddd; border-radius:8px;">
+      <p><strong>M-Pesa</strong></p>
+      <p>Número: <strong>856576690</strong></p>
+      <p>Nome: <strong>FELIX JOSE</strong></p>
+      <button onclick="copyToClipboard('856576690')" class="copy-button">Copiar Número</button>
     </div>
-    
-    <!-- Status do pagamento -->
-    <div id="payment-status-pending" style="background-color: #fff9c4; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ffd54f; display: flex; align-items: center;">
-      <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #ffc107; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
-        <span style="color: white; font-weight: bold; font-size: 14px;">!</span>
-      </div>
-      <div>
-        <p style="margin: 0; font-weight: bold; color: #f57c00;">Pagamento Pendente</p>
-        <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #666;">Realize o pagamento para que possamos processar seu pedido</p>
-      </div>
+
+    <div style="background:#e8f5e9; padding:10px; border-radius:6px; border:1px solid #a5d6a7; margin-top:20px;">
+      <p>💡 Após pagar, envie o comprovativo abaixo:</p>
     </div>
-    
-    <!-- Status de pagamento confirmado (inicialmente oculto) -->
-    <div id="payment-status-confirmed" style="background-color: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #a5d6a7; display: none; align-items: center;">
-      <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #4caf50; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
-        <span style="color: white; font-weight: bold; font-size: 14px;">✓</span>
-      </div>
-      <div>
-        <p style="margin: 0; font-weight: bold; color: #2e7d32;">Pagamento Confirmado</p>
-        <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #666;">Seu pedido está sendo processado e será entregue em breve</p>
-      </div>
-    </div>
-    
-    <!-- Instruções de pagamento -->
-    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e1e4e8;">
-      <h3 style="margin-top: 0; font-size: 1.1rem; color: #333;">Instruções de Pagamento</h3>
-      
-      <p style="margin: 0 0 15px 0;">Para finalizar, é necessário pagar a taxa de envio (${taxaEnvio} MT) através de um dos métodos abaixo:</p>
-      
-      <div style="background-color: white; padding: 12px; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 12px;">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center;">
-            <span style="background-color: #2196F3; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
-              <span style="font-size: 14px;">📲</span>
-            </span>
-            <div>
-              <p style="margin: 0; font-weight: bold;">E-Mola</p>
-              <p style="margin: 3px 0 0 0; font-size: 0.9rem; color: #666;">Número: <span id="emola-number" style="font-weight: bold;">863881471</span></p>
-            </div>
-          </div>
-          <button class="copy-button" onclick="copyToClipboard('863881471')">Copiar</button>
-        </div>
-      </div>
-      
-      <p style="margin: 15px 0; font-weight: bold;">Dados do Beneficiário:</p>
-      <p style="margin: 0 0 8px 0;">● 👤 Nome: AMADE ALBERTO MADINGANHE</p>
-      <p style="margin: 0 0 15px 0;">● 🚚 Empresa: Movitel Moçambique</p>
-      
-      <div style="background-color: #e8f5e9; padding: 12px; border-radius: 6px; border: 1px solid #a5d6a7;">
-        <p style="margin: 0; font-size: 0.9rem;">💡 <strong>Dica:</strong> Envie o comprovante de pagamento abaixo para agilizar a entrega do seu prêmio.</p>
-      </div>
-    </div>
-    
-    <!-- Upload do comprovativo -->
-    <div id="comprovativo-section" style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e1e4e8;">
-      <h3 style="margin-top: 0; font-size: 1.1rem; color: #333;">Envio do Comprovativo</h3>
-      
-      <p style="margin: 0 0 15px 0;">Após efetuar o pagamento, faça o upload do comprovativo:</p>
-      
-      <div style="border: 2px dashed #ddd; border-radius: 6px; padding: 20px; text-align: center; margin-bottom: 15px; background-color: white;" id="drop-area">
-        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTEgMTVoMlY2aC0ydjl6bTAtMTJoMlYxaC0ydjJ6TTMuNSAxMS4zM2wxLjQxLTEuNDFMOS4xNyAxNC4xN2wtMS40MSAxLjQxTDMuNSAxMS4zM3pNMTMuNDMgMTQuMTdsNC4yNS00LjI1IDEuNDEgMS40MS00LjI1IDQuMjUtMS40MS0xLjQxek0zLjUgNy43NWw0LjI1LTQuMjUgMS40MSAxLjQxLTQuMjUgNC4yNUwzLjUgNy43NXptMTQuMzQgMGwxLjQxLTEuNDEgNC4yNSA0LjI1LTEuNDEgMS40MS00LjI1LTQuMjV6TTE0LjUgMjFWMjNoLTJ2LTJoLTJ2LTJoNnYyaC0yeiIgZmlsbD0iI2JiYiIvPjwvc3ZnPg==" alt="Upload" style="width: 50px; height: 50px; margin-bottom: 10px;">
-        <p style="margin: 0 0 10px 0; font-weight: bold; color: #666;">Arraste o comprovativo para aqui</p>
-        <p style="margin: 0; color: #999; font-size: 0.9rem;">ou</p>
-        <input type="file" id="comprovativo-file" accept="image/*" style="display: none;">
-        <button onclick="document.getElementById('comprovativo-file').click();" style="background-color: #f5f5f5; border: 1px solid #ddd; color: #333; padding: 8px 15px; border-radius: 4px; margin-top: 10px; cursor: pointer;">Selecionar arquivo</button>
-        <p style="margin: 10px 0 0 0; font-size: 0.8rem; color: #999;">Formatos aceitos: JPG, PNG, PDF (máx. 5MB)</p>
-      </div>
-      
-      <!-- Preview do arquivo (inicialmente oculto) -->
-      <div id="file-preview" style="display: none; margin-top: 15px; background-color: white; border: 1px solid #ddd; border-radius: 6px; padding: 12px;">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center;">
-            <div style="width: 40px; height: 40px; background-color: #e3f2fd; border-radius: 4px; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
-              <span style="font-size: 20px;">📄</span>
-            </div>
-            <div>
-              <p id="file-name" style="margin: 0; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">comprovativo.jpg</p>
-              <p id="file-size" style="margin: 3px 0 0 0; font-size: 0.8rem; color: #666;">0 KB</p>
-            </div>
-          </div>
-          <button onclick="removeFile()" style="background: none; border: none; color: #F44336; cursor: pointer; font-size: 0.9rem;">Remover</button>
-        </div>
-      </div>
-      
-      <button class="submit" id="btn-confirmar-pagamento" style="margin-top: 15px;" onclick="confirmarPagamento()">Confirmar Pagamento</button>
-    </div>
-    
-    <!-- Acompanhamento (inicialmente oculto) -->
-    <div id="tracking-section" style="display: none; background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e1e4e8;">
-      <h3 style="margin-top: 0; font-size: 1.1rem; color: #333;">Acompanhamento do Pedido</h3>
-      
-      <div style="margin: 15px 0;">
-        <div style="display: flex; margin-bottom: 15px;">
-          <div style="width: 28px; display: flex; flex-direction: column; align-items: center;">
-            <div style="width: 28px; height: 28px; border-radius: 50%; background-color: #4caf50; display: flex; justify-content: center; align-items: center; z-index: 2;">
-              <span style="color: white; font-weight: bold; font-size: 14px;">✓</span>
-            </div>
-            <div style="width: 2px; height: 100%; background-color: #4caf50; margin: 5px 0;"></div>
-          </div>
-          <div style="margin-left: 12px;">
-            <p style="margin: 0; font-weight: bold;">Pagamento Confirmado</p>
-            <p style="margin: 3px 0 0 0; font-size: 0.9rem; color: #666;">15/05/2025 - ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2, '0')}</p>
-          </div>
-        </div>
-        
-        <div style="display: flex; margin-bottom: 15px;">
-          <div style="width: 28px; display: flex; flex-direction: column; align-items: center;">
-            <div style="width: 28px; height: 28px; border-radius: 50%; background-color: #2196F3; display: flex; justify-content: center; align-items: center; z-index: 2;">
-              <span style="color: white; font-weight: bold; font-size: 14px;">2</span>
-            </div>
-            <div style="width: 2px; height: 100%; background-color: #bdbdbd; margin: 5px 0;"></div>
-          </div>
-          <div style="margin-left: 12px;">
-            <p style="margin: 0; font-weight: bold;">Em Processamento</p>
-            <p style="margin: 3px 0 0 0; font-size: 0.9rem; color: #666;">Seu pedido está sendo preparado</p>
-          </div>
-        </div>
-        
-        <div style="display: flex;">
-          <div style="width: 28px; display: flex; flex-direction: column; align-items: center;">
-            <div style="width: 28px; height: 28px; border-radius: 50%; background-color: #bdbdbd; display: flex; justify-content: center; align-items: center; z-index: 2;">
-              <span style="color: white; font-weight: bold; font-size: 14px;">3</span>
-            </div>
-          </div>
-          <div style="margin-left: 12px;">
-            <p style="margin: 0; font-weight: bold;">Entrega</p>
-            <p style="margin: 3px 0 0 0; font-size: 0.9rem; color: #666;">Previsto para 16/05/2025 - 17/05/2025</p>
-          </div>
-        </div>
-      </div>
-      
-      <div style="background-color: #e8f5e9; padding: 12px; border-radius: 6px; border: 1px solid #a5d6a7; margin-top: 15px;">
-        <p style="margin: 0; font-size: 0.9rem;">💬 <strong>Dúvidas?</strong> Entre em contato pelo WhatsApp: <a href="https://wa.me/258866545876" style="color: #2196F3; text-decoration: none; font-weight: bold;">+258 86 149 7642</a></p>
-      </div>
-    </div>
-    
-    <!-- Lembrete -->
-    <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem; text-align: center;">Prazo de entrega: 1 a 2 dias após confirmação do pagamento</p>
+
+    ${uploadSection()}
   `;
-  
-  // Marcar como participante
-  localStorage.setItem('participouQuizMovitel', 'true');
-  
-  // Configurar o upload de arquivo
+
   setupFileUpload();
 }
 
-// Configurar a funcionalidade de upload de arquivo
+// ======================
+// UPLOAD DE COMPROVATIVO
+// ======================
+
+function uploadSection() {
+  return `
+    <div id="comprovativo-section" style="background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd; margin-top:20px;">
+
+      <h3>Enviar Comprovativo</h3>
+
+      <div id="drop-area" style="border:2px dashed #bbb; padding:25px; text-align:center; border-radius:6px;">
+        <p><strong>Arraste o comprovativo aqui</strong></p>
+        <p>ou</p>
+        <button onclick="document.getElementById('comprovativo-file').click()" class="copy-button">Selecionar Arquivo</button>
+        <input type="file" id="comprovativo-file" accept="image/*,application/pdf" style="display:none;">
+      </div>
+
+      <div id="file-preview" style="display:none; margin-top:20px; background:white; border:1px solid #ddd; padding:12px; border-radius:6px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center;">
+            <span style="font-size:22px; margin-right:10px;">📄</span>
+            <div>
+              <p id="file-name" style="margin:0; font-weight:bold;"></p>
+              <p id="file-size" style="margin:0; font-size:0.9rem;"></p>
+            </div>
+          </div>
+          <button onclick="removeFile()" style="background:none; border:none; color:#E53935; font-size:0.9rem;">Remover</button>
+        </div>
+      </div>
+
+      <button class="submit" style="margin-top:20px;" onclick="confirmarPagamento()">Confirmar Pagamento</button>
+    </div>
+
+    <div id="tracking-section" style="display:none; margin-top:25px; background:#f8f9fa; padding:15px; border-radius:8px; border:1px solid #ddd;">
+      <h3>Acompanhamento do Pedido</h3>
+
+      <p>Pagamento Confirmado ✓</p>
+      <p>Pedido em Processamento…</p>
+      <p>Entrega prevista em 1–2 dias úteis.</p>
+
+      <div style="background:#e8f5e9; padding:10px; border-radius:6px; margin-top:10px;">
+        <p>Dúvidas? WhatsApp: <strong>+258 86 149 7642</strong></p>
+      </div>
+    </div>
+  `;
+}
+
 function setupFileUpload() {
-  const fileInput = document.getElementById('comprovativo-file');
-  const dropArea = document.getElementById('drop-area');
-  const filePreview = document.getElementById('file-preview');
-  const fileName = document.getElementById('file-name');
-  const fileSize = document.getElementById('file-size');
-  
-  // Impedir comportamento padrão de drag and drop no navegador
-  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    dropArea.addEventListener(eventName, preventDefaults, false);
-  });
-  
-  function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
+  const input = document.getElementById('comprovativo-file');
+  const drop = document.getElementById('drop-area');
+  const preview = document.getElementById('file-preview');
+  const name = document.getElementById('file-name');
+  const size = document.getElementById('file-size');
 
+  ['dragenter','dragover','dragleave','drop'].forEach(ev => {
+    drop.addEventListener(ev, e => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
 
-  // Destacar área quando arrastando arquivo
-  ['dragenter', 'dragover'].forEach(eventName => {
-    dropArea.addEventListener(eventName, highlight, false);
-  });
-  
-  ['dragleave', 'drop'].forEach(eventName => {
-    dropArea.addEventListener(eventName, unhighlight, false);
-  });
-  
-  function highlight() {
-    dropArea.style.borderColor = '#2196F3';
-    dropArea.style.backgroundColor = '#e3f2fd';
-  }
-  
-  function unhighlight() {
-    dropArea.style.borderColor = '#ddd';
-    dropArea.style.backgroundColor = 'white';
-  }
-  
-  // Lidar com os arquivos soltos
-  dropArea.addEventListener('drop', handleDrop, false);
-  
-  function handleDrop(e) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-    handleFiles(files);
-  }
-  
-  // Lidar com seleção de arquivo via input
-  fileInput.addEventListener('change', function() {
-    handleFiles(this.files);
-  });
-  
+  drop.addEventListener('drop', (e) => handleFiles(e.dataTransfer.files));
+  input.addEventListener('change', () => handleFiles(input.files));
+
   function handleFiles(files) {
-    if (files.length > 0) {
-      const file = files[0];
-      
-      // Verificar tamanho (máx 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert('O arquivo é muito grande. O tamanho máximo permitido é 5MB.');
-        return;
-      }
-      
-      // Verificar tipo
-      const acceptedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-      if (!acceptedTypes.includes(file.type)) {
-        alert('Formato de arquivo não suportado. Por favor, envie um arquivo JPG, PNG ou PDF.');
-        return;
-      }
-      
-      // Exibir prévia
-      fileName.textContent = file.name;
-      fileSize.textContent = formatFileSize(file.size);
-      filePreview.style.display = 'block';
-      dropArea.style.display = 'none';
+    if (!files.length) return;
+
+    const file = files[0];
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Arquivo muito grande (máx 5MB)");
+      return;
     }
+
+    preview.style.display = "block";
+    drop.style.display = "none";
+    name.textContent = file.name;
+    size.textContent = formatFileSize(file.size);
   }
-  
+
   function formatFileSize(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-    else return (bytes / 1048576).toFixed(1) + ' MB';
+    if (bytes < 1024) return bytes + " B";
+    else if (bytes < 1_048_576) return (bytes/1024).toFixed(1) + " KB";
+    else return (bytes/1_048_576).toFixed(1) + " MB";
   }
 }
 
-// Remover arquivo
+// Remover ficheiro
 function removeFile() {
-  const filePreview = document.getElementById('file-preview');
-  const dropArea = document.getElementById('drop-area');
-  const fileInput = document.getElementById('comprovativo-file');
-  
-  filePreview.style.display = 'none';
-  dropArea.style.display = 'block';
-  fileInput.value = ''; // Limpar o input
+  document.getElementById('file-preview').style.display = "none";
+  document.getElementById('drop-area').style.display = "block";
+  document.getElementById('comprovativo-file').value = "";
 }
 
 // Confirmar pagamento
 function confirmarPagamento() {
-  const filePreview = document.getElementById('file-preview');
-  fbq('track', 'Purchase', {
-    value: 197.00,
-    currency: 'MZN',
-    content_name: 'Taxa de Envio iPhone 14 Pro',
-    content_ids: ['iphone14pro_delivery']
-  });
-  
-  // Verificar se o arquivo foi enviado
-  if (filePreview.style.display === 'none') {
-    alert('Por favor, envie o comprovativo de pagamento antes de continuar.');
+  const preview = document.getElementById('file-preview');
+
+  if (preview.style.display === "none") {
+    alert("Por favor, envie o comprovativo antes de continuar.");
     return;
   }
-  
-  // Simular processamento
-  const btnConfirmar = document.getElementById('btn-confirmar-pagamento');
-  btnConfirmar.disabled = true;
-  btnConfirmar.textContent = 'Processando...';
-  btnConfirmar.style.backgroundColor = '#9e9e9e';
-  
-  setTimeout(() => {
-    // Esconder seção pendente e mostrar confirmado
-    document.getElementById('payment-status-pending').style.display = 'none';
-    document.getElementById('payment-status-confirmed').style.display = 'flex';
-    
-    // Esconder seção de comprovativo
-    document.getElementById('comprovativo-section').style.display = 'none';
-    
-    // Mostrar tracking
-    document.getElementById('tracking-section').style.display = 'block';
-    
-    // Rolar para cima para mostrar a confirmação
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }, 2000);
-}
-// ⬇️ COLA AQUI EMBAIXO — FORA de qualquer função
 
-window.copyToClipboard = function (text) {
+  fbq('track','Purchase',{
+    value:197,
+    currency:'MZN'
+  });
+
+  document.getElementById('comprovativo-section').style.display = "none";
+  document.getElementById('tracking-section').style.display = "block";
+
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+// Copiar número
+window.copyToClipboard = function(text) {
   navigator.clipboard.writeText(text)
-    .then(() => {
-      alert('Copiado com sucesso! 🔥');
-    })
-    .catch(err => {
-      alert('Erro ao copiar: ' + err);
-    });
+    .then(() => alert("Número copiado!"))
+    .catch(() => alert("Erro ao copiar"));
 };
